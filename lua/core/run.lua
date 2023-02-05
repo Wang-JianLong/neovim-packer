@@ -19,7 +19,7 @@ local M = {
       c = 'g++ % -o wjl',
       runf = function(os)
         if os then
-          return 'g++ % -o wjl && ./wjl'
+          return 'g++ % -o wjl && time ./wjl'
         end
         return 'g++ % -o wjl && wjl'
       end
@@ -33,7 +33,16 @@ local M = {
         end
         return 'gcc % -o ctest  && ctest'
       end
-    }
+    },
+    go = {
+      name = 'go',
+      -- ckey = '<space>c',
+      -- rkey = '<space>r',
+      -- tkey = '<space>ur',
+      runf = function(_)
+        return 'go run %'
+      end
+    },
   }
 
 }
@@ -52,11 +61,13 @@ local keybinding = function(code, os)
     code.tkey = M.default_t_k
   end
 
-  vim.keymap.set("n", code.ckey, ":w<Esc>:!" .. code.c .. " <CR> ")
+  if code.c then
+    vim.keymap.set("n", code.ckey, ":w<Esc>:! time " .. code.c .. " <CR> ")
+  end
   -- run
-  vim.keymap.set("n", code.rkey, ":w<Esc>:!" .. code.runf(os) .. "<CR>")
+  vim.keymap.set("n", code.rkey, ":w<Esc>:!time " .. code.runf(os) .. "<CR>")
   -- terminal run
-  vim.keymap.set("n", code.tkey, ":w<Esc>:terminal " .. code.runf(os) .. "<CR>i")
+  vim.keymap.set("n", code.tkey, ":w<Esc>:terminal time " .. code.runf(os) .. "<CR>i")
   -- vim.keymap.set("i", code.ckey, "<Esc>:w<Esc>:!" .. code.c .. " <CR> ")
   -- -- run
   vim.keymap.set("i", code.rkey, "<Esc>:w<Esc>:!" .. code.runf(os) .. "<CR>")

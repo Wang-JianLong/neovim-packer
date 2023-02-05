@@ -9,7 +9,7 @@ local Snip = {
   is_linux = function(linux)
     local path = "~/AppData/Local/nvim/snippets"
     if linux then
-      path = "~/AppData/Local/nvim/snippets"
+      path = "~/.config/nvim/snippets"
     end
     require("luasnip.loaders.from_vscode").lazy_load({ paths = path })
   end,

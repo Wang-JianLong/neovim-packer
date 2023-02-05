@@ -2,13 +2,13 @@ local Plugins = {}
 
 function Plugins.extends(use)
   -- cmdline
-  use({
-    "folke/noice.nvim",
-    requires = {
-      "MunifTanjim/nui.nvim",
-      "rcarriga/nvim-notify",
-    },
-  })
+  -- use({
+  --   "folke/noice.nvim",
+  --   requires = {
+  --     "MunifTanjim/nui.nvim",
+  --     "rcarriga/nvim-notify",
+  --   },
+  -- })
 
   -- explore
   use({
@@ -20,6 +20,7 @@ function Plugins.extends(use)
   })
   -- theme
   use({ "svrana/neosolarized.nvim", requires = { { "tjdevries/colorbuddy.nvim" } } })
+  use 'folke/tokyonight.nvim'
 
   -- lsp
   use({
@@ -37,13 +38,13 @@ function Plugins.extends(use)
   })
 
   -- high
-  -- use({
-  --   "nvim-treesitter/nvim-treesitter",
-  --   run = function()
-  --     local ts_update = require("nvim-treesitter.install").update({ with_sync = true })
-  --     ts_update()
-  --   end,
-  -- })
+  use({
+    "nvim-treesitter/nvim-treesitter",
+    run = function()
+      local ts_update = require("nvim-treesitter.install").update({ with_sync = true })
+      ts_update()
+    end,
+  })
 
   -- text
   use("rmagatti/alternate-toggler") -- true/false
@@ -108,6 +109,11 @@ function Plugins.extends(use)
   use("f-person/git-blame.nvim")
   -- todo
   use({ "folke/todo-comments.nvim", requires = "nvim-lua/plenary.nvim" })
+
+  use 'petertriho/nvim-scrollbar'
+  use "lukas-reineke/indent-blankline.nvim"
+  use { 'TimUntersberger/neogit', requires = 'nvim-lua/plenary.nvim' }
+  use 'echasnovski/mini.animate'
 end
 
 return Plugins

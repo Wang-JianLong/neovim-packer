@@ -8,6 +8,8 @@ if s2 then
   alternate.setup({
     alternates = {
       ["=="] = "!=",
+      [">>"] = "<<",
+      ["<<"] = ">>",
     },
   })
 end
